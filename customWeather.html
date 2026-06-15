@@ -1,19 +1,212 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Visual Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+.page-header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.8),
+        0 0 20px rgba(255,255,255,0.6),
+        0 0 30px rgba(0,0,0,0.3);
+}
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #74c0fc, #d0ebff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .sun {
+      position: absolute;
+      top: 8%;
+      right: 12%;
+      width: 130px;
+      height: 130px;
+      background: #ffd43b;
+      border-radius: 50%;
+      box-shadow: 0 0 60px #ffd43b;
+    }
+
+    .cloud {
+      position: absolute;
+      background: #fff;
+      border-radius: 50px;
+      opacity: 0.9;
+      animation: moveClouds 25s linear infinite;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 80px;
+      height: 80px;
+      top: -40px;
+      left: 25px;
+    }
+
+    .cloud::after {
+      width: 110px;
+      height: 110px;
+      top: -60px;
+      right: 20px;
+    }
+
+    .cloud.one {
+      width: 220px;
+      height: 70px;
+      top: 25%;
+      left: -250px;
+    }
+
+    .cloud.two {
+      width: 180px;
+      height: 60px;
+      top: 45%;
+      left: -300px;
+      animation-duration: 35s;
+      opacity: 0.75;
+    }
+
+    .cloud.three {
+      width: 260px;
+      height: 80px;
+      top: 62%;
+      left: -350px;
+      animation-duration: 45s;
+      opacity: 0.65;
+    }
+
+    .rain {
+      position: absolute;
+      bottom: 0;
+      width: 2px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.7);
+      animation: rainFall 1s linear infinite;
+    }
+
+    .rain:nth-child(6) { left: 15%; animation-delay: 0s; }
+    .rain:nth-child(7) { left: 25%; animation-delay: 0.2s; }
+    .rain:nth-child(8) { left: 35%; animation-delay: 0.4s; }
+    .rain:nth-child(9) { left: 55%; animation-delay: 0.1s; }
+    .rain:nth-child(10) { left: 70%; animation-delay: 0.3s; }
+    .rain:nth-child(11) { left: 85%; animation-delay: 0.5s; }
+
+    .weather-icons {
+      position: absolute;
+      bottom: 8%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      font-size: 70px;
+    }
+
+    .weather-icons span {
+      width: 110px;
+      height: 110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes moveClouds {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(130vw);
+      }
+    }
+
+    @keyframes rainFall {
+      from {
+        transform: translateY(-100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
 <body>
+    <header class="page-header">
+    <h1>AI Weather Insights</h1>
+</header>
+  <div class="scene">
+    <div class="sun"></div>
 
-<div style="text-align: center;">
-  <p><h1>Custom Weather - Information</h1></p>
-</div>
+    <div class="cloud one"></div>
+    <div class="cloud two"></div>
+    <div class="cloud three"></div>
 
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
+    <div class="rain"></div>
 
-
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <div class="weather-icons">
+      <span>☀️</span>
+      <span>🌤️</span>
+      <span>🌧️</span>
+      <span>⛈️</span>
+      <span>❄️</span>
+    </div>
+  </div>
+ <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 <script type="module">
 import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
  createChat({
  webhookUrl: 'https://n8n.srv1389046.hstgr.cloud/webhook/afbe5cf2-44f4-40b4-9538-fac109adfc40/chat'
 });
 </script>
+</script>
 </body>
-  
 </html>
